@@ -1,0 +1,219 @@
+/* Custom styles for InstaKitPro - Dark Theme */
+
+:root {
+    --primary-color: #00c6ff;
+    --secondary-color: #0072ff;
+    --dark-bg: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #ffffff;
+    --muted-color: #aaaaaa;
+    --border-color: #333333;
+    --success-color: #4bb543;
+    --warning-color: #ffaa00;
+    --danger-color: #ff3040;
+}
+
+body.dark-theme {
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: linear-gradient(to bottom right, #121212, #1a1a1a, #121212);
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* Logo styling */
+.logo-container {
+    margin-bottom: 2rem;
+}
+
+.text-glow {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 198, 255, 0.7), 0 0 20px rgba(0, 198, 255, 0.5);
+}
+
+.icon-glow {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 198, 255, 0.7);
+}
+
+/* Card styling */
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+    border-bottom: none;
+    padding: 1.25rem;
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+}
+
+.feature-box {
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    background-color: var(--card-bg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: var(--primary-color);
+}
+
+/* Form controls */
+.form-control {
+    background-color: #2a2a2a;
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.form-control:focus {
+    background-color: #2a2a2a;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 198, 255, 0.25);
+    color: var(--text-color);
+}
+
+.form-text {
+    color: var(--muted-color);
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 198, 255, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 6px 20px rgba(0, 198, 255, 0.4);
+}
+
+.btn-outline-secondary {
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.btn-outline-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--text-color);
+    color: var(--text-color);
+}
+
+/* Success icon */
+.success-icon {
+    animation: pulse 2s infinite;
+    color: var(--success-color);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+    70% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+}
+
+/* Footer */
+footer {
+    color: var(--muted-color);
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .display-5 {
+        font-size: 2rem;
+    }
+}
+
+/* Two-factor authentication page */
+.verification-code-input {
+    letter-spacing: 0.5em;
+    text-align: center;
+}
+
+/* Session result page */
+#sessionId {
+    font-family: monospace;
+    font-size: 0.9rem;
+    background-color: #2a2a2a;
+    color: var(--text-color);
+}
+
+/* Alerts */
+.alert {
+    background-color: #2a2a2a;
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.alert-success {
+    background-color: rgba(75, 181, 67, 0.2);
+    border-color: var(--success-color);
+}
+
+.alert-warning {
+    background-color: rgba(255, 170, 0, 0.2);
+    border-color: var(--warning-color);
+}
+
+.alert-danger {
+    background-color: rgba(255, 48, 64, 0.2);
+    border-color: var(--danger-color);
+}
+
+.alert-info {
+    background-color: rgba(0, 198, 255, 0.2);
+    border-color: var(--primary-color);
+}
+
+/* Loading animation */
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 198, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s ease-in-out infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

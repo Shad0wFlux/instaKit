@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحديث الملف الشخصي - InstaKitPro</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <div class="container">
+        <header class="text-center my-4">
+            <a href="index.html" class="text-decoration-none">
+                <h1 class="display-5 fw-bold text-glow">InstaKitPro</h1>
+                <p class="lead text-light">أداة إنستغرام الاحترافية</p>
+            </a>
+        </header>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-header text-white text-center">
+                        <h2 class="my-2">تحديث الملف الشخصي</h2>
+                    </div>
+                    <div class="card-body">
+                        <div id="alert-container"></div>
+                        <div id="loading-container" style="display: none;">
+                            <div class="loading-spinner"></div>
+                            <p class="text-center text-light">جاري تحديث الملف الشخصي...</p>
+                        </div>
+
+                        <form id="updateProfileForm">
+                            <div class="mb-3">
+                                <label for="session_id" class="form-label text-light">معرف الجلسة</label>
+                                <input type="text" class="form-control" id="session_id" name="session_id" required>
+                                <div class="form-text">أدخل معرف الجلسة الذي تم استخراجه سابقًا</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="profile_pic" class="form-label text-light">صورة الملف الشخصي الجديدة</label>
+                                <input type="file" class="form-control" id="profile_pic" name="profile_pic" accept="image/*" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">تحديث الملف الشخصي</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="text-muted mb-0">سيتم تحديث صورة الملف الشخصي ومتابعة الحسابات المميزة</p>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="index.html" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-right"></i> العودة للقائمة الرئيسية
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center mt-5 mb-3 text-light">
+            <p>InstaKitPro &copy; 2025 | تم التطوير بواسطة INSTA EK6Q</p>
+            <p>تليجرام: <a href="https://t.me/nusrc" target="_blank" class="text-glow">@nusrc</a></p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // استرجاع معرف الجلسة من التخزين المحلي
+            const sessionId = localStorage.getItem('instakit_session');
+            if (sessionId) {
+                document.getElementById('session_id').value = sessionId;
+            }
+        });
+        
+        document.getElementById('updateProfileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const sessionId = document.getElementById('session_id').value;
+            const profilePic = document.getElementById('profile_pic').files[0];
+            
+            if (!sessionId) {
+                showAlert('danger', 'يرجى إدخال معرف الجلسة');
+                return;
+            }
+            
+            if (!profilePic) {
+                showAlert('danger', 'يرجى اختيار صورة للملف الشخصي');
+                return;
+            }
+            
+            // إظهار مؤشر التحميل
+            document.getElementById('updateProfileForm').style.display = 'none';
+            document.getElementById('loading-container').style.display = 'block';
+            
+            // محاكاة عملية تحديث الملف الشخصي
+            setTimeout(function() {
+                // تخزين معلومات التحديث في التخزين المحلي
+                localStorage.setItem('instakit_profile_updated', 'true');
+                
+                // توجيه المستخدم إلى صفحة النتيجة
+                window.location.href = 'profile_updated.html';
+            }, 2000);
+        });
+        
+        // دالة لعرض تنبيه
+        function showAlert(type, message) {
+            const alertContainer = document.getElementById('alert-container');
+            alertContainer.innerHTML = `
+                <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

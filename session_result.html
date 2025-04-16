@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتيجة استخراج الجلسة - InstaKitPro</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <div class="container">
+        <header class="text-center my-4">
+            <a href="index.html" class="text-decoration-none">
+                <h1 class="display-5 fw-bold text-glow">InstaKitPro</h1>
+                <p class="lead text-light">أداة إنستغرام الاحترافية</p>
+            </a>
+        </header>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-header text-white text-center">
+                        <h2 class="my-2">تم استخراج الجلسة بنجاح!</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-success text-center" role="alert">
+                            <i class="fas fa-check-circle fa-2x mb-3"></i>
+                            <p>تم استخراج معرف الجلسة بنجاح</p>
+                        </div>
+
+                        <div class="profile-image-container text-center mb-4">
+                            <img src="images/IMG_9338.JPG" alt="صورة الملف الشخصي" class="profile-image rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 3px solid var(--primary-color);">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-light">معرف الجلسة الخاص بك:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="sessionId" readonly>
+                                <button class="btn btn-primary" type="button" onclick="copySessionId()">
+                                    <i class="fas fa-copy"></i> نسخ
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning" role="alert">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span class="fw-bold">تنبيه:</span> احتفظ بمعرف الجلسة هذا بشكل آمن ولا تشاركه مع أي شخص.
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <div class="d-grid gap-2">
+                            <a href="update_profile.html" class="btn btn-primary">
+                                <i class="fas fa-user-edit"></i> تحديث الملف الشخصي
+                            </a>
+                            <a href="index.html" class="btn btn-outline-secondary">
+                                <i class="fas fa-home"></i> العودة للقائمة الرئيسية
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center mt-5 mb-3 text-light">
+            <p>InstaKitPro &copy; 2025 | تم التطوير بواسطة INSTA EK6Q</p>
+            <p>تليجرام: <a href="https://t.me/nusrc" target="_blank" class="text-glow">@nusrc</a></p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // استرجاع معرف الجلسة من التخزين المحلي
+            const sessionId = localStorage.getItem('instakit_session');
+            const username = localStorage.getItem('instakit_username');
+            
+            if (sessionId) {
+                document.getElementById('sessionId').value = sessionId;
+            } else {
+                // إذا لم يتم العثور على معرف الجلسة، إعادة التوجيه إلى صفحة تسجيل الدخول
+                window.location.href = 'extract_session.html';
+            }
+            
+            // تحميل صورة الملف الشخصي من التخزين المحلي
+            const profileImage = document.querySelector('.profile-image');
+            if (profileImage) {
+                const imagePath = localStorage.getItem('instakit_profile_image') || 'images/IMG_9338.JPG';
+                profileImage.src = imagePath;
+            }
+        });
+        
+        function copySessionId() {
+            var sessionIdInput = document.getElementById("sessionId");
+            sessionIdInput.select();
+            sessionIdInput.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            
+            // إظهار إشعار النسخ
+            var button = document.querySelector(".btn-primary");
+            var originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> تم النسخ';
+            button.classList.remove("btn-primary");
+            button.classList.add("btn-success");
+            
+            setTimeout(function() {
+                button.innerHTML = originalText;
+                button.classList.remove("btn-success");
+                button.classList.add("btn-primary");
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
